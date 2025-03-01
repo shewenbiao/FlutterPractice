@@ -32,7 +32,8 @@ class _ChatScreenState extends State<ChatScreen> {
     if (pickedFile == null) return; // 如果用户取消选择
 
     setState(() {
-      _messages.add({'type': 'image', 'content': pickedFile.path, 'isUser': true});
+      _messages
+          .add({'type': 'image', 'content': pickedFile.path, 'isUser': true});
     });
 
     _simulateBotReply('收到图片！');
@@ -133,6 +134,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
+                    keyboardType: TextInputType.multiline,
                     decoration: InputDecoration(
                       hintText: '请输入消息...',
                       border: OutlineInputBorder(
