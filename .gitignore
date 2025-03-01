@@ -1,0 +1,33 @@
+# Flutter related
+**/android/**/Flutter/**
+**/ios/Flutter/**
+**/ios/.symlinks/**
+**/ios/Pods/**
+**/linux/**/ephemeral/**
+**/macos/**/Flutter/**
+**/web/**/Flutter/**
+**/windows/**/Flutter/**
+
+# Dart/Pub related
+**/.dart_tool/**
+**/.packages
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub-cache/**
+**/.pub/**
+
+# Build and IDE related
+**/build/**
+**/generated/**
+
+# Dependency and lock files
+**/pubspec.lock
+**/.idea/**
+**/.vscode/**
+
+# Miscellaneous
+**/coverage/**
+**/test/**.dart_tool/**
+**/.DS_Store
+**/.metadata
+**/.flutter-versions
