@@ -52,66 +52,66 @@ class MyDrawer extends StatelessWidget {
                 children: <Widget>[
                   _buildDrawerItem(
                     context,
-                    icon: Icons.list,
+                    icon: Icons.view_list, // 列表视图更适合用 view_list
                     title: 'ListView 示例',
                     routeName: 'listview_route_page',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.grid_view,
+                    icon: Icons.grid_on, // 网格视图用 grid_on 更直观
                     title: 'GridView 无限滚动示例',
                     routeName: "gridview_route_page",
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.view_carousel,
+                    icon: Icons.view_carousel, // 保持不变,已经很合适
                     title: 'PageView 示例',
                     routeName: "pageview_route_page",
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.tab,
+                    icon: Icons.tab_unselected, // 使用 tab_unselected 更能表达标签页
                     title: 'TabBarView 示例',
                     routeName: 'tabview_route_page',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.upcoming,
+                    icon: Icons.view_agenda, // 自定义滚动视图用 view_agenda 更合适
                     title: '自定义滚动视图示例',
                     routeName: 'custom_scroll_view_route',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.scanner,
+                    icon: Icons.view_day, // 第二个滚动视图示例用 view_day
                     title: '自定义滚动视图示例 2',
                     routeName: 'custom_scroll_view_route2',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.favorite,
+                    icon: Icons.view_stream, // 嵌套滚动用 view_stream 更合适
                     title: 'NestedScrollView 示例',
                     routeName: 'nested_scroll_view_route',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.nature,
+                    icon: Icons.tab, // 嵌套标签页用 tab
                     title: 'NestedTabBarView 示例',
                     routeName: 'nested_tab_bar_view_route',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.exit_to_app,
+                    icon: Icons.arrow_back, // 返回操作用 arrow_back
                     title: 'WillPopScope 退出页面示例',
                     routeName: 'will_pop_scope_route',
                   ),
                   _buildDrawerItem(
                     context,
-                    icon: Icons.bed,
+                    icon: Icons.message, // 对话框用 message
                     title: 'Dialog 示例',
                     routeName: 'dialog_route_page',
                   ),
                   ListTile(
-                    leading: const Icon(Icons.info),
+                    leading: const Icon(Icons.data_usage), // 数据传递用 data_usage
                     title: const Text('Inherited Widget 示例'),
                     onTap: () {
                       Navigator.push(
@@ -133,7 +133,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.stream),
+                    leading: const Icon(Icons.stream), // 保持不变,已经很合适
                     title: const Text('StreamBuilder 示例'),
                     onTap: () {
                       Navigator.push(
@@ -144,7 +144,7 @@ class MyDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.chat),
+                    leading: const Icon(Icons.chat_bubble), // 聊天用 chat_bubble 更形象
                     title: const Text('聊天示例'),
                     onTap: () {
                       Navigator.push(
