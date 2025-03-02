@@ -10,247 +10,271 @@ class DialogDemoRoute extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Dialog Demo'),
       ),
-      body: Column(children: [
-        ElevatedButton(
-          child: const Text('对话框1: AlertDialog'),
-          onPressed: () async {
-            bool? result = await showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text('提示'),
-                    content: const Text('您确定要删除当前文件吗?'),
-                    actions: [
-                      TextButton(
-                        child: const Text('取消'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: const Text('删除'),
-                        onPressed: () {
-                          Navigator.of(context).pop(true);
-                        },
-                      )
-                    ],
-                  );
-                });
-            if (result == true) {
-              // 删除文件
-              debugPrint('删除文件');
-            } else {
-              // 取消删除
-              debugPrint('取消删除');
-            }
-          },
-        ),
-        ElevatedButton(
-            child: const Text('对话框2: SimpleDialog'),
-            onPressed: () async {
-              String? result = await showDialog(
-                  context: context,
-                  builder: (context) {
-                    return SimpleDialog(
-                      title: const Text('请选择操作'),
-                      children: [
-                        SimpleDialogOption(
-                          child: const Text('复制'),
-                          onPressed: () {
-                            Navigator.of(context).pop('复制');
-                          },
-                        ),
-                        SimpleDialogOption(
-                          child: const Text('移动'),
-                          onPressed: () {
-                            Navigator.of(context).pop('移动');
-                          },
-                        ),
-                        SimpleDialogOption(
-                          child: const Text('删除'),
-                          onPressed: () {
-                            Navigator.of(context).pop('删除');
-                          },
-                        ),
-                      ],
-                    );
-                  });
-              debugPrint('选择了：$result');
-            }),
-        ElevatedButton(
-            child: const Text('对话框3: Dialog'),
-            onPressed: () async {
-              String? result = await showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Dialog(
-                      child: Column(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            _buildButton(
+              '对话框1: AlertDialog',
+              () async {
+                bool? result = await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('提示'),
+                        content: const Text('您确定要删除当前文件吗?'),
+                        actions: [
+                          TextButton(
+                            child: const Text('取消'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            child: const Text('删除'),
+                            onPressed: () {
+                              Navigator.of(context).pop(true);
+                            },
+                          )
+                        ],
+                      );
+                    });
+                if (result == true) {
+                  debugPrint('删除文件');
+                } else {
+                  debugPrint('取消删除');
+                }
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              '对话框2: SimpleDialog',
+              () async {
+                String? result = await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SimpleDialog(
+                        title: const Text('请选择操作'),
                         children: [
-                          const ListTile(title: Text("请选择")),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: 30,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  title: Text('Item $index'),
-                                  onTap: () {
-                                    Navigator.of(context).pop('Item $index');
-                                  },
-                                );
-                              },
-                            ),
+                          SimpleDialogOption(
+                            child: const Text('复制'),
+                            onPressed: () {
+                              Navigator.of(context).pop('复制');
+                            },
+                          ),
+                          SimpleDialogOption(
+                            child: const Text('移动'),
+                            onPressed: () {
+                              Navigator.of(context).pop('移动');
+                            },
+                          ),
+                          SimpleDialogOption(
+                            child: const Text('删除'),
+                            onPressed: () {
+                              Navigator.of(context).pop('删除');
+                            },
+                          ),
+                        ],
+                      );
+                    });
+                debugPrint('选择了：$result');
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              '对话框3: Dialog',
+              () async {
+                String? result = await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        child: Column(
+                          children: [
+                            const ListTile(title: Text("请选择")),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: 30,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text('Item $index'),
+                                    onTap: () {
+                                      Navigator.of(context).pop('Item $index');
+                                    },
+                                  );
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    });
+                debugPrint('选择了：$result');
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              '对话框4: GeneralDialog',
+              () async {
+                bool? result = await showCustomDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('提示'),
+                        content: const Text('您确定要删除当前文件吗?'),
+                        actions: [
+                          TextButton(
+                            child: const Text('取消'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            child: const Text('删除'),
+                            onPressed: () {
+                              Navigator.of(context).pop(true);
+                            },
+                          )
+                        ],
+                      );
+                    });
+                if (result == true) {
+                  debugPrint('删除文件');
+                } else {
+                  debugPrint('取消删除');
+                }
+              },
+            ),
+            const SizedBox(height: 12),
+            const DialogStateWidget(),
+            const SizedBox(height: 12),
+            _buildButton(
+              "显示底部菜单列表(Material风格)",
+              () async {
+                int? type = await showModalBottomSheet<int>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ListView.builder(
+                      itemCount: 30,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text("$index"),
+                          onTap: () => Navigator.of(context).pop(index),
+                        );
+                      },
+                    );
+                  },
+                );
+                debugPrint('item: $type');
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              "Loading Dialog",
+              () async {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) {
+                    return const AlertDialog(
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          CircularProgressIndicator(),
+                          Padding(
+                            padding: EdgeInsets.only(top: 26.0),
+                            child: Text("正在加载，请稍后..."),
                           )
                         ],
                       ),
                     );
-                  });
-              debugPrint('选择了：$result');
-            }),
-        ElevatedButton(
-            child: const Text('对话框4: GeneralDialog'),
-            onPressed: () async {
-              bool? result = await showCustomDialog(
+                  },
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              "Loading Dialog2",
+              () async {
+                showDialog(
                   context: context,
+                  barrierDismissible: false,
                   builder: (context) {
-                    return AlertDialog(
-                      title: const Text('提示'),
-                      content: const Text('您确定要删除当前文件吗?'),
-                      actions: [
-                        TextButton(
-                          child: const Text('取消'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+                    return const UnconstrainedBox(
+                      constrainedAxis: Axis.vertical,
+                      child: SizedBox(
+                        width: 280,
+                        child: AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              CircularProgressIndicator(),
+                              Padding(
+                                padding: EdgeInsets.only(top: 26.0),
+                                child: Text("正在加载，请稍后..."),
+                              )
+                            ],
+                          ),
                         ),
-                        TextButton(
-                          child: const Text('删除'),
-                          onPressed: () {
-                            Navigator.of(context).pop(true);
-                          },
-                        )
-                      ],
-                    );
-                  });
-              if (result == true) {
-                // 删除文件
-                debugPrint('删除文件');
-              } else {
-                // 取消删除
-                debugPrint('取消删除');
-              }
-            }),
-        const DialogStateWidget(),
-        ElevatedButton(
-          child: const Text("显示底部菜单列表(Material风格)"),
-          onPressed: () async {
-            int? type = await showModalBottomSheet<int>(
-              context: context,
-              builder: (BuildContext context) {
-                return ListView.builder(
-                  itemCount: 30,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text("$index"),
-                      onTap: () => Navigator.of(context).pop(index),
+                      ),
                     );
                   },
                 );
               },
-            );
-            debugPrint('item: $type');
-          },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              "日历选择弹框",
+              () async {
+                var date = DateTime.now();
+                showDatePicker(
+                  context: context,
+                  initialDate: date,
+                  firstDate: date,
+                  lastDate: date.add(const Duration(days: 30)),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+            _buildButton(
+              "iOS 风格日历选择弹框",
+              () async {
+                var date = DateTime.now();
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                        height: 300,
+                        color: Colors.white,
+                        child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.dateAndTime,
+                          onDateTimeChanged: (DateTime newDate) {
+                            debugPrint("选择的日期: $newDate");
+                          },
+                          initialDateTime: date,
+                          minimumDate: date,
+                          maximumDate: date.add(const Duration(days: 30)),
+                          maximumYear: date.year + 1,
+                        ));
+                  },
+                );
+              },
+            ),
+          ],
         ),
-        ElevatedButton(
-            child: const Text("Loading Dialog"),
-            onPressed: () async {
-              showDialog(
-                context: context,
-                barrierDismissible: false, //点击遮罩不关闭对话框
-                builder: (context) {
-                  return const AlertDialog(
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        CircularProgressIndicator(),
-                        Padding(
-                          padding: EdgeInsets.only(top: 26.0),
-                          child: Text("正在加载，请稍后..."),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              );
-            }),
-        ElevatedButton(
-            child: const Text("Loading Dialog2"),
-            onPressed: () async {
-              showDialog(
-                context: context,
-                barrierDismissible: false, //点击遮罩不关闭对话框
-                builder: (context) {
-                  return const UnconstrainedBox(
-                    constrainedAxis: Axis.vertical,
-                    child: SizedBox(
-                      width: 280,
-                      child: AlertDialog(
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            CircularProgressIndicator(),
-                            Padding(
-                              padding: EdgeInsets.only(top: 26.0),
-                              child: Text("正在加载，请稍后..."),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }),
-        ElevatedButton(
-            child: const Text("日历选择弹框"),
-            onPressed: () async {
-              var date = DateTime.now();
-              showDatePicker(
-                context: context,
-                initialDate: date,
-                firstDate: date,
-                lastDate: date.add(
-                  //未来30天可选
-                  const Duration(days: 30),
-                ),
-              );
-            }),
-        ElevatedButton(
-            child: const Text("iOS 风格日历选择弹框"),
-            onPressed: () async {
-              var date = DateTime.now();
-              showCupertinoModalPopup(
-                context: context,
-                builder: (context) {
-                  return Container(
-                      height: 300,
-                      color: Colors.white,
-                      child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.dateAndTime,
-                        onDateTimeChanged: (DateTime newDate) {
-                          debugPrint("选择的日期: $newDate");
-                        },
-                        initialDateTime: date,
-                        minimumDate: date,
-                        maximumDate: date.add(
-                          //未来30天可选
-                          const Duration(days: 30),
-                        ),
-                        maximumYear: date.year + 1,
-                      ));
-                },
-              );
-            })
-      ]),
+      ),
+    );
+  }
+
+  Widget _buildButton(String text, VoidCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+        ),
+        onPressed: onPressed,
+        child: Text(text),
+      ),
     );
   }
 }
@@ -263,19 +287,25 @@ class DialogStateWidget extends StatefulWidget {
 }
 
 class _DialogDemoRouteState extends State<DialogStateWidget> {
-  bool withTree = false; // 复选框选中状态
+  bool withTree = false;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Text("对话框5: 删除确认对话框(带复选框)"),
-      onPressed: () async {
-        bool? delete = await showDeleteConfirmDialog5();
-        if (delete == null) {
-          print("取消删除");
-        } else {
-          print("同时删除子目录: $delete");
-        }
-      },
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+        ),
+        child: const Text("对话框5: 删除确认对话框(带复选框)"),
+        onPressed: () async {
+          bool? delete = await showDeleteConfirmDialog5();
+          if (delete == null) {
+            print("取消删除");
+          } else {
+            print("同时删除子目录: $delete");
+          }
+        },
+      ),
     );
   }
 
